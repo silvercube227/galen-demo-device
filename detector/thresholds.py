@@ -21,9 +21,9 @@ class ThresholdConfig:
 
     min_mean_intensity: float = 40.0
     max_mean_intensity: float = 220.0
-    min_contrast_std: float = 8.0
-    max_noise_estimate: float = 24.0
-    min_hot_pixel_fraction: float = 0.001
+    min_contrast_std: float = 12.0
+    max_noise_estimate: float = 18.0
+    min_hot_pixel_fraction: float = 0.002
 
 
 @dataclass(frozen=True)
