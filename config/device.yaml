@@ -9,6 +9,9 @@ preprocess:
   filter_mode: gaussian
   normalize: true
   clip_percentile: [1.0, 99.0]
+  smoothing_enabled: false
+  smoothing_kernel: 3
+  smoothing_sigma: 0.8
 
 thresholds:
   min_mean_intensity: 40.0

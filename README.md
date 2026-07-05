@@ -8,7 +8,7 @@ accepted.
 
 ```
 detector/
-  preprocess.py   # denoising, contrast normalization, edge-preserving filters
+  preprocess.py   # denoising, optional pre-detection smoothing, contrast normalization
   thresholds.py   # acceptance gate (signal, noise, intensity bounds)
   pipeline.py     # wires preprocessing + gate together
 config/
