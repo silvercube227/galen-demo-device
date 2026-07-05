@@ -21,9 +21,6 @@ class PreprocessConfig:
     filter_mode: FilterMode = "gaussian"
     normalize: bool = True
     clip_percentile: tuple[float, float] = (1.0, 99.0)
-    smoothing_enabled: bool = True
-    smoothing_kernel: int = 3
-    smoothing_sigma: float = 0.8
 
 
 class Preprocessor:
@@ -35,8 +32,6 @@ class Preprocessor:
     def run(self, frame: np.ndarray) -> np.ndarray:
         """Return a filtered grayscale image ready for thresholding."""
         gray = self._to_grayscale(frame)
-        if self.config.smoothing_enabled:
-            gray = self._apply_smoothing(gray)
         filtered = self._apply_filter(gray)
         if self.config.normalize:
             filtered = self._normalize_contrast(filtered)
@@ -48,11 +43,6 @@ class Preprocessor:
         if frame.shape[2] == 4:
             frame = cv2.cvtColor(frame, cv2.COLOR_BGRA2BGR)
         return cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY).astype(np.float32)
-
-    def _apply_smoothing(self, gray: np.ndarray) -> np.ndarray:
-        """Optional pre-detection smoothing pass to suppress high-frequency noise."""
-        k = self._odd_kernel(self.config.smoothing_kernel)
-        return cv2.GaussianBlur(gray, (k, k), self.config.smoothing_sigma)
 
     def _apply_filter(self, gray: np.ndarray) -> np.ndarray:
         k = self._odd_kernel(self.config.blur_kernel)
