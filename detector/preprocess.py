@@ -21,7 +21,7 @@ class PreprocessConfig:
     filter_mode: FilterMode = "gaussian"
     normalize: bool = True
     clip_percentile: tuple[float, float] = (1.0, 99.0)
-    smoothing_enabled: bool = False
+    smoothing_enabled: bool = True
     smoothing_kernel: int = 3
     smoothing_sigma: float = 0.8
 
